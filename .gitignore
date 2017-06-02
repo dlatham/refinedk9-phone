@@ -1,0 +1,6 @@
+.DS_Store
+config.php
+./audio
+errordata.txt
+eventdata.txt
+testdata.txt
