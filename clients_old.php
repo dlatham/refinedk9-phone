@@ -1,4 +1,6 @@
 <?php 
+include './config.php';
+
 //FIRST SEE IF A SELECTION WAS MADE
 $select = "0";
 if (isset($_REQUEST['Digits'])){
@@ -12,7 +14,7 @@ if($select == 4){
 
 
     $from = ltrim($_REQUEST['From']," +1");
-    $xmlurl = 'https://crm.zoho.com/crm/private/xml/Leads/searchRecords?newFormat=1&authtoken=2298dfb6293816ecb47c6b01a83a0b91&scope=crmapi&criteria=(Phone:'.$from.')';
+    $xmlurl = 'https://crm.zoho.com/crm/private/xml/Leads/searchRecords?newFormat=1&authtoken=' . $zoho_auth .'&scope=crmapi&criteria=(Phone:'.$from.')';
     $xml = simplexml_load_string(file_get_contents($xmlurl), null, LIBXML_NOCDATA);
     $data = ($xml->xpath('/response/result/Leads/row'));
     $arrVariables = array("LEADID", "First Name", "Email", "Dog Name");

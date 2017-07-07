@@ -1,7 +1,7 @@
 <?php   
     
     // SEE IF THEY HAVE SELECTED SOMETHING
-    $select = '#';
+    $select = '*';
     if (isset($_REQUEST['Digits'])){
         $select = $_REQUEST['Digits'];
     }
@@ -9,20 +9,13 @@
     //ASSEMBLE THE GREETING
 
     switch ($select) {
-        case '#':
+        case '*':
             $greeting = "<Gather timeout=\"10\" numDigits=\"1\" finishOnKey=\"\">
-                         <Play>./audio/guest.mp3</Play>
+                         <Play>./audio/services.mp3</Play>
                          <Pause length=\"5\"/>
                          </Gather>";
             break;
-        case '1':
-            $greeting = "<Redirect method=\"GET\">services.php</Redirect>";
-            break;
-        case '0':
-            //leave message here
-            $greeting = "<Say>Please leave your message after the tone...</Say><Record recordingStatusCallback=\"recording-complete.php\" maxLength=\"120\" /><Say>I did not receive your recording.</Say>";
-            break;
-        case '*':
+        case '#':
             $greeting = "<Redirect method=\"GET\">hello.php</Redirect>";
             break;
     } 

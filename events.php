@@ -2,6 +2,7 @@
 include './config.php';
 date_default_timezone_set('America/Los_Angeles');
 //$xmlurl = './eventdata.txt';
+$xmlurl = 'https://crm.zoho.com/crm/private/xml/Events/getRelatedRecords?newFormat=1&authtoken=' . $zoho_auth . '&scope=crmapi&id=' . $lead_id . '&parentModule=Leads';
 $xml = simplexml_load_string(file_get_contents($xmlurl), null, LIBXML_NOCDATA);
 #$xml = simplexml_load_string(file_get_contents('eventdata.txt'), null, LIBXML_NOCDATA);
 #$xml = simplexml_load_string(file_get_contents('errordata.txt'), null, LIBXML_NOCDATA);

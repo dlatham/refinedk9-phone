@@ -1,5 +1,5 @@
 # Refined K-9 Phone IVR
--------------------
+
 A simple PHP application that provides a Twilio endpoint to power the Refined K-9 phone tree.
 
 ## Requirements:
@@ -9,6 +9,8 @@ A simple PHP application that provides a Twilio endpoint to power the Refined K-
 
 ## Setup:
  - Add the appropriate audio files to the ./audio folder
- - Rename the config-example.php to example.php and add the auth tokens.
+ - Rename the config-example.php to config.php and add the auth tokens.
+ - Ensure the api subdomian has been added to the SSL cert
+ - Ensure the the correct virtualhost is setup for the api endpoint in your apache configuration (Use https obviously)
 
 ## Changelog:
