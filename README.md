@@ -22,3 +22,5 @@ A simple PHP application that provides a Twilio endpoint to power the Refined K-
  - Extract timezone to the config file
  - Version for public launch / seasonal updates to recordings
  - Add encryption
+ - Test transcription
+ - Add SMS alert capability
