@@ -14,3 +14,9 @@ A simple PHP application that provides a Twilio endpoint to power the Refined K-
  - Ensure the the correct virtualhost is setup for the api endpoint in your apache configuration (Use https obviously)
 
 ## Changelog:
+ - Added the ability to record voicemails and email multiple recipients the resulting audio file
+
+## Feature Backlog
+ - Add voicemails to the CRM entry
+ - Extract timezone to the config file
+ - Version for public launch / seasonal updates to recordings
