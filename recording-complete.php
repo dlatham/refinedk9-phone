@@ -13,8 +13,8 @@ if(isset($_REQUEST['RecordingUrl'])){
 }
 
 // See if this caller is in the CRM based on a phone number search
-if(isset($_REQUEST['From'])){
-	$from = $_REQUEST['From'];
+if(isset($_REQUEST['from'])){
+	$from = $_REQUEST['from'];
 } else {
 	sendConfirmation($emailVoicemailsTo, 'New voicemail error', '<html><body>A request was made to the voicemail system but no phone number was sent in the request. This error shouldn\'t happen and should be looked into.</body></html>');
 	exit('Error: Request expects a From parameter to be passed.');
@@ -77,7 +77,11 @@ function sendConfirmation($email,$subject,$message) {
     'Reply-To: no-reply@refinedk9.com\r\n';
     $headers .= "MIME-Version: 1.0\r\n";
 	$headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
-    mail($email,$subject,$message,$headers);
+    if(mail($email,$subject,$message,$headers)){
+    	echo "Mail sent successfully";
+    } else {
+    	echo "Mail failed.";
+    }
 }
 
 ?>

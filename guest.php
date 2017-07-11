@@ -20,7 +20,7 @@
             break;
         case '0':
             //leave message here
-            $greeting = "<Say>Please leave your message after the tone...</Say><Record recordingStatusCallback=\"recording-complete.php?From=" . $_REQUEST['From'] . "\" recordingStatusCallbackMethod=\"GET\" maxLength=\"120\" /><Say>I did not receive your recording.</Say>";
+            $greeting = "<Say>Please leave your message after the tone...</Say><Record recordingStatusCallback=\"recording-complete.php?from=" . $_REQUEST['From'] . "\" recordingStatusCallbackMethod=\"GET\" maxLength=\"120\" /><Say>I did not receive your recording.</Say>";
             break;
         case '*':
             $greeting = "<Redirect method=\"GET\">hello.php</Redirect>";
