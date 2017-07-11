@@ -5,11 +5,20 @@ include './config.php';
 date_default_timezone_set('America/Los_Angeles');
 
 //First, assemble and error check all the necessary URL parameters
-$messageurl = $_REQUEST['RecordingUrl'];
-
+if(isset($_REQUEST['RecordingUrl'])){
+	$messageurl = $_REQUEST['RecordingUrl'];
+} else {
+	sendConfirmation($emailVoicemailsTo, 'New voicemail error', '<html><body>A request was made to the voicemail system but no message was sent in the request. This error shouldn\'t happen and should be looked into.</body></html>');
+	exit('Error: Request expects a RecordingUrl to be passed.');
+}
 
 // See if this caller is in the CRM based on a phone number search
-$from = $_REQUEST['from']; //Confirm that this is the variable being passed
+if(isset($_REQUEST['From'])){
+	$from = $_REQUEST['From'];
+} else {
+	sendConfirmation($emailVoicemailsTo, 'New voicemail error', '<html><body>A request was made to the voicemail system but no phone number was sent in the request. This error shouldn\'t happen and should be looked into.</body></html>');
+	exit('Error: Request expects a From parameter to be passed.');
+}
 $from = ltrim($from," +1");
 
 //First check the leads
@@ -52,10 +61,11 @@ if(count($retArr)==0){
 
 //If no accounts result, send a unknown caller email
 if(count($retArr)==0){
-	$subject = "New Refined K-9 voicemail from: " . $from;
+	$subject = "New voicemail from: " . $from;
 	$message = "<html><body>Received: " . date('Y-m-d') . "<br />Caller: ". $from . " (Number not found in the CRM)<br /><br />Audio: <a href='" . $messageurl . "'>" . $messageurl . "</a><br /><br />Additional Tools<br /><a href='https://crm.zoho.com/new/'>Add this phone caller to the CRM</a><br /><a href='https://twilio.com/block'>Block this caller from making phone calls</a></body></html>";
 } else {
-	$subject = "New Refined K-9 voicemail from: " . $retArr[0]['Last Name'] . ", " . $retArr[0]['First Name'];
+//Send the email with the lead or contact's info embedded
+	$subject = "New voicemail from: " . $retArr[0]['Last Name'] . ", " . $retArr[0]['First Name'];
 	$message = "<html><body>Received: " . date('Y-m-d') . "<br />Caller: " . $retArr[0]['Last Name'] . ", " . $retArr[0]['First Name'] . "<br />Phone: " . $from . "<br />Dog Name: " . $retArr[0]['Dog Name'] . "<br />Dog Breed: " . $retArr[0]['Dog Breed'] . "<br />City: " . $retArr[0]['City'] . "<br /><br />Audio: <a href='" . $messageurl . "'>" . $messageurl . "</a><br /><br />Additional Tools<br /><a href='https://crm.zoho.com/crm/EntityInfo.do?module=" . ($retArr[0]['LEADID']!=NULL ? "Leads&id=" . $retArr[0]['LEADID'] : "Contacts&id=" . $retArr[0]['CONTACTID'] ) . "'>View the contact in the CRM</a></body></html>";
 
 }
