@@ -1,8 +1,13 @@
 <?php 
 include './config.php';
 date_default_timezone_set('America/Los_Angeles');
+
+//First see if we need to go back
+if(isset($_REQUEST['Digits'])&&($_REQUEST['Digits']=="*")){
+    $greeting = "<Redirect method=\"GET\">clients.php</Redirect>";
+}
 //$xmlurl = './eventdata.txt';
-$xmlurl = 'https://crm.zoho.com/crm/private/xml/Events/getRelatedRecords?newFormat=1&authtoken=' . $zoho_auth . '&scope=crmapi&id=' . $lead_id . '&parentModule=Leads';
+/*$xmlurl = 'https://crm.zoho.com/crm/private/xml/Events/getRelatedRecords?newFormat=1&authtoken=' . $zoho_auth . '&scope=crmapi&id=' . $lead_id . '&parentModule=Leads';
 $xml = simplexml_load_string(file_get_contents($xmlurl), null, LIBXML_NOCDATA);
 #$xml = simplexml_load_string(file_get_contents('eventdata.txt'), null, LIBXML_NOCDATA);
 #$xml = simplexml_load_string(file_get_contents('errordata.txt'), null, LIBXML_NOCDATA);
@@ -18,14 +23,16 @@ $retArr = NULL;
             @$arrReturn[$arrVar] = (string)$rowData[0][0];
         }
         $retArr[] = $arrReturn;
-    }
+    }*/
 
-    //FIRST CONFIRM THERE ARE CALENDAR EVENTS
+    //CONFIRM THERE ARE CALENDAR EVENTS
     //echo count($retArr);
-    if(count($retArr)==0){
-        $greeting = "<Gather timeout=\"10\" numDigits=\"1\">
-                                <Say>You have no upcoming appointments scheduled. Press 1 to schedule an appointment or press star to return to the menu.</Say>
-                        </Gather>";
+    //if(count($retArr)==0){
+    if(true){ //SHORT CIRCUITING THIS UNTIL WE'RE READY
+        //$greeting = "<Gather timeout=\"10\" numDigits=\"1\">
+         //                       <Say>You have no upcoming appointments scheduled. Press 1 to schedule an appointment or press star to return to the menu.</Say>
+          //              </Gather>";
+        $greeting = "<Say>Confirming appointments is currently under development for current clients. Please check back soon for updates.</Say><Redirect method=\"GET\">clients.php</Redirect>";
     } else {
         //LOOP THROUGH THE ARRAY OF EVENTS AND LOOK FOR DAYS IN THE FUTURE
         $today = new DateTime('NOW');
