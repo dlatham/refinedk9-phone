@@ -62,7 +62,7 @@ if(count($retArr)==0){
 //If no accounts result, send a unknown caller email
 if(count($retArr)==0){
 	$subject = "New voicemail from: " . $from;
-	$message = "<html><body>Received: " . date('Y-m-d') . "<br />Caller: ". $from . " (Number not found in the CRM)<br /><br />Audio: <a href='" . $messageurl . "'>" . $messageurl . "</a><br /><br />Additional Tools<br /><a href='https://crm.zoho.com/new/'>Add this phone caller to the CRM</a><br /><a href='https://twilio.com/block'>Block this caller from making phone calls</a></body></html>";
+	$message = "<html><body>Received: " . date('Y-m-d') . "<br />Caller: ". $from . " (Number not found in the CRM)<br /><br />Audio: <a href='" . $messageurl . "'>" . $messageurl . "</a><br /><br />Additional Tools<br /><a href='https://crm.zoho.com/crm/CreateEntity.do?module=Leads'>Add this phone caller to the CRM</a><br /></body></html>";
 } else {
 //Send the email with the lead or contact's info embedded
 	$subject = "New voicemail from: " . $retArr[0]['Last Name'] . ", " . $retArr[0]['First Name'];
