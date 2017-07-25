@@ -1,9 +1,9 @@
 <?php   
     
     include './config.php';
-    // SEE IF THEY HAVE SELECTED SOMETHING
+    // SEE IF THEY HAVE SELECTED SOMETHING - if '*' is selected then just default to no entry to repeat this menu
     $select = '';
-    if (isset($_REQUEST['Digits'])){
+    if ((isset($_REQUEST['Digits'])) && ($_REQUEST['Digits']!='*')) {
         $select = $_REQUEST['Digits'];
     }
 
@@ -17,7 +17,8 @@
                          </Gather>";
             break;
         case '1':
-            $greeting = "<Redirect method=\"GET\">events.php</Redirect>";
+            //They wanto review their existing events so we need to check and see if they are in the CRM and then redirect with the appropriate LEADID (contacts not supported yet)
+            $greeting = "<Redirect method=\"POST\">crm_id.php?forwardurl=events.php&returnurl=clients.php</Redirect>";
             break;
         case '2':
             //Direct to Ken

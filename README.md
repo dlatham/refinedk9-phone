@@ -15,6 +15,7 @@ A simple PHP application that provides a Twilio endpoint to power the Refined K-
 
 ## Changelog:
  - Added the ability to record voicemails and email multiple recipients the resulting audio file
+ - v0.1: First production release which has limited the use of events as a future feature
 
 ## Feature Backlog
  - Get the leadid on the client.php call (no need to differentiate the menu however)
