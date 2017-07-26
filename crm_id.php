@@ -61,7 +61,7 @@ if(isset($_REQUEST['Digits']) && ($_REQUEST['Digits'] == '*')) {
 	if(count($retArr) == 0) {
 		$greeting = "<Gather timeout=\"10\" numDigits=\"10\" finishOnKey=\"*\"><Say>This phone number wasn't found in our records. Enter the phone number associated with your account or press star to return to the menu.</Say></Gather>";
 	} else {
-		$greeting = "<Redirect method=\"GET\">" . $forwardurl . "?id=" . (isset($retArr[0]['LEADID']) ? $retArr[0]['LEADID'] : $retArr[0]['CONTACTID']) . "&type=" . (isset($retArr[0]['LEADID']) ? "lead" : "contact") . "</Redirect>";
+		$greeting = "<Redirect method=\"GET\"><![CDATA[" . $forwardurl . "?id=" . (isset($retArr[0]['LEADID']) ? $retArr[0]['LEADID'] : $retArr[0]['CONTACTID']) . "&type=" . (isset($retArr[0]['LEADID']) ? "lead" : "contact") . "]]></Redirect>";
 	}
 }
 

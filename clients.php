@@ -18,7 +18,7 @@
             break;
         case '1':
             //They wanto review their existing events so we need to check and see if they are in the CRM and then redirect with the appropriate LEADID (contacts not supported yet)
-            $greeting = "<Redirect method=\"POST\">crm_id.php?forwardurl=events.php&returnurl=clients.php</Redirect>";
+            $greeting = "<Redirect method=\"GET\"><![CDATA[crm_id.php?forwardurl=events%2Ephp&returnurl=clients%2Ephp]]></Redirect>";
             break;
         case '2':
             //Direct to Ken

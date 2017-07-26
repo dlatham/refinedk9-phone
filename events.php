@@ -7,7 +7,7 @@ if(isset($_REQUEST['Digits'])&&($_REQUEST['Digits']=="*")){
     $greeting = "<Redirect method=\"GET\">clients.php</Redirect>";
 }
 
-$leadid = $_REQUEST['LEADID'];
+$leadid = $_REQUEST['id'];
 //$xmlurl = './eventdata.txt';
 $xmlurl = 'https://crm.zoho.com/crm/private/xml/Events/getRelatedRecords?newFormat=1&authtoken=' . $zoho_auth . '&scope=crmapi&id=' . $leadid . '&parentModule=Leads';
 $xml = simplexml_load_string(file_get_contents($xmlurl), null, LIBXML_NOCDATA);
